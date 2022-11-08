@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "id.rizkimandiri.jadwalpelajaran",
+  "applicationId": "id.greenrunchly.psyhealth",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 17,
-      "versionName": "1.3.0 Student Edition",
+      "versionCode": 1,
+      "versionName": "1.0.0",
       "outputFile": "app-release.apk"
     }
   ],
