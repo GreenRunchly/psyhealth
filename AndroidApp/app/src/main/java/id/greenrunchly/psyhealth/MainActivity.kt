@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //scheduleNotification(10,55)
         scheduleNotification(5,0)
         createNotificationChannel()
 

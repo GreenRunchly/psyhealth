@@ -18,6 +18,13 @@ function is_exists(variable) {
     ///if (typeof userDataNeed === 'undefined'){
     ///if (variable !== null) || (variable !== undefined){
 }
+///Urut key array
+function sortObject(obj) {
+    return Object.keys(obj).sort().reduce(function (result, key) {
+        result[key] = obj[key];
+        return result;
+    }, {});
+}
 ///Acak Array
 function acakArray1d(arra1) {
     var ctr = arra1.length, temp, index;

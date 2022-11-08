@@ -29,7 +29,7 @@
     <div class="container nav-parent" id="navigation-bar-hide">
         <div class="content nav-content">
             <div class="content-partition nav-partition">
-                <a class="content-partition main-button nav-button main-button-round halamanMundur" ><i class="fas fa-chevron-left"></i></a>
+                <a class="content-partition main-button nav-button main-button-round" href="home.html" ><i class="fas fa-chevron-left"></i></a>
             </div>
             <div class="content-partition partition-right nav-partition ">
                 <a class="main-button nav-button main-button-round" href="portal.html?keluar_user=Keluar"><img class="userDataAvatar"></a>
@@ -51,10 +51,10 @@
     <div class="container form-parent">
         <div class="content form-content">
             <div class="content-partition">
-                <a class="main-button" href="notes-new.html">Buat Catatan</a>
+                <a class="main-button" href="notes-edit.html?note_id=new">Buat Catatan</a>
             </div>
         </div>
-    </div>
+    </div><br>
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-title">
@@ -141,13 +141,18 @@
 
             ///Load Diary Slides
             if (is_exists(userData.diary) == true){
+
                 var addSlides = '';
                 $.each(userData.diary, function( index, value ) {
-                    addSlides += '<a class="swiper-slide" href="notes-open.html?note_id='+value.url+'">';
-                    addSlides += '<div class="swipe-box swipe-normal swipe-article">';
-                    addSlides += '<div class="swipe-thumbnail swipe-article-thumbnail" style="background-image:url('+value.thumb[0]+');"></div>';
+                    if (index == 'new'){
+                        addSlides += '<a class="swiper-slide">';
+                    }else{
+                        addSlides += '<a class="swiper-slide" href="notes-open.html?note_id='+index+'">';
+                    }
+                    addSlides += '<div class="swipe-box swipe-normal swipe-article swipe-article-landscape">';
                     addSlides += '<div class="swipe-article-title">';
                     addSlides += '<h3>'+value.judul+'</h3>';
+                    addSlides += '<h4>'+value.updated_ago+'</h4>';
                     addSlides += '</div>';
                     addSlides += '</div>';
                     addSlides += '</a>';

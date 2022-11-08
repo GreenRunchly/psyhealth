@@ -8,13 +8,13 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('C:\\AndroidStudio\\psyhealth\\android-app\\keystore.jks')
+            storeFile file('E:\\GitProject\\Psyhealth\\AndroidApp\\keystore.jks')
             storePassword 'Ilfanindo1878'
             keyAlias 'rizki'
             keyPassword 'Ilfanindo1878'
         }
         release {
-            storeFile file('C:\\AndroidStudio\\psyhealth\\android-app\\keystore.jks')
+            storeFile file('E:\\GitProject\\Psyhealth\\AndroidApp\\keystore.jks')
             storePassword 'Ilfanindo1878'
             keyAlias 'rizki'
             keyPassword 'Ilfanindo1878'

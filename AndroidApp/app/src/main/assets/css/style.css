@@ -39,7 +39,7 @@ h6, .h6 {
     padding:0px; 
     font-weight: normal;
     color: #333;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 a{
     -webkit-tap-highlight-color: transparent;
@@ -52,13 +52,13 @@ label{
     font-size: 18px;
     font-weight: normal;
 }
-input,select,button,.main-button{
+input,select,button,textarea,.main-button,.ql-container{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 40px;
-    background-color: rgb(230,230,230);
+    background-color: rgb(240,240,240);
     border-radius: 8px;
     text-decoration: none;
     font-size: 18px;
@@ -76,6 +76,15 @@ button,input[type=submit],.main-button{
     background-color: #1c4342;
     color: white;
 }
+textarea{
+    width: 100%;
+    min-height: 300px;
+    resize: none;
+}
+textarea.readonly{
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
 .klik:hover{
     cursor: pointer;
 }
@@ -87,6 +96,12 @@ button,input[type=submit],.main-button{
 }
 .icon-white{
     filter: invert(100%) sepia(3%) saturate(4%) hue-rotate(287deg) brightness(105%) contrast(100%);
+}
+.ql-container{
+    display: block;
+}
+.ql-container .ql-editor{
+    padding: 0px;
 }
 
 /* just effect */
@@ -284,6 +299,9 @@ button,input[type=submit],.main-button{
     display: flex;
     justify-content: flex-start;
 }
+.explore-parent .explore-content .explore-title.title-center{
+    justify-content: center;
+}
 .explore-parent .explore-content .explore-title h1{
     font-size: 32px;
     font-weight: bold;
@@ -292,9 +310,15 @@ button,input[type=submit],.main-button{
     font-size: 20px;
     font-weight: bold;
 }
+.explore-parent .explore-content .explore-title.title-center h1{
+    text-align: center;
+}
 .explore-parent .explore-content .explore-subtitle{
     display: flex;
     justify-content: flex-start;
+}
+.explore-parent .explore-content .explore-subtitle.subtitle-center{
+    justify-content: center;
 }
 .explore-parent .explore-content .explore-subtitle h2{
     font-size: 20px;
@@ -303,6 +327,9 @@ button,input[type=submit],.main-button{
 .explore-parent .explore-content .explore-subtitle p{
     font-size: 20px;
     font-weight: normal;
+}
+.explore-parent .explore-content .explore-subtitle.subtitle-center h1{
+    text-align: center;
 }
 
 /* swiper */
@@ -355,7 +382,7 @@ button,input[type=submit],.main-button{
 }
 .swipe-parent .swipe-content .swiper-slide .swipe-box .swipe-thumbnail{
     width: 100%;
-    height: 130px;
+    height:120px;
     background-color: white;
     border: 2px solid white;
     border-radius: 8px;
@@ -410,10 +437,10 @@ button,input[type=submit],.main-button{
 }
 .swipe-article-landscape .swipe-article-thumbnail{
     display: block;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 90px;
+    max-height: 90px;
     background-color: white;
     border-radius: 8px;
     background-repeat: no-repeat;
@@ -422,13 +449,14 @@ button,input[type=submit],.main-button{
 }
 .swipe-article-landscape .swipe-article-title{
     width: 200px;
-    padding: 0px 16px;
+    padding: 0px 12px;
+    padding-right: 0px;
 }
 .swipe-article-landscape .swipe-article-title h3{
     font-size: 20px;
 }
 .swipe-article-landscape .swipe-article-title h4{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /*Swiper buku*/

@@ -9,7 +9,7 @@
     <meta name="title" content="PsyHealth">
     <meta name="author" content="GreenRunchly">
     
-    <title>PsyHealth - Notes</title>
+    <title>PsyHealth - Notes Opener</title>
     
     <!--- Style --->
     <link rel="stylesheet" href="js/swiper/swiper-bundle.min.css">
@@ -29,35 +29,32 @@
     <div class="container nav-parent" id="navigation-bar-hide">
         <div class="content nav-content">
             <div class="content-partition nav-partition">
-                <a class="content-partition main-button nav-button main-button-round halamanMundur" ><i class="fas fa-chevron-left"></i></a>
+                <a class="content-partition main-button nav-button main-button-round" href="notes.html" ><i class="fas fa-chevron-left"></i></a>
             </div>
             <div class="content-partition partition-right nav-partition ">
+                <a class="content-partition main-button nav-button main-button-round diaryDataEditUrl" ><i class="fas fa-pencil"></i></a>
+                <a class="content-partition main-button nav-button main-button-round diaryDataRemoveUrl" ><i class="fas fa-trash"></i></a>
                 <a class="main-button nav-button main-button-round" href="portal.html?keluar_user=Keluar"><img class="userDataAvatar"></a>
             </div>
         </div>
     </div>
-    
     <br><br><br>
     <div class="container explore-parent">
         <div class="content explore-content">
-            <div class="explore-title">
-                <h1>Lorem Ipsum</h1>
+            <div class="explore-title title-center">
+                <h1 class="diaryDataJudul">...</h1>
             </div>
-            <div class="explore-subtitle">
-                <h2>Tanggal 20 Januari 2022</h2>
+            <div class="explore-subtitle subtitle-center">
+                <h2 class="diaryDataDate">...</h2>
             </div>
         </div>
     </div><br>
     <div class="container explore-parent">
         <div class="content explore-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <textarea class="diaryDataIsi readonly" readonly></textarea>
         </div>
     </div>
 </body>
-<script type="text/javascript">
-    ///Optional Data Needed
-    var userDataNeed = btoa(JSON.stringify(['diary','diary_content']));
-</script>
 <script src="js/get.js"></script>
 <script src="js/function.js"></script>
 <script src="js/system-script.js"></script>
@@ -69,7 +66,29 @@
         if (is_exists(userData) == true){
             $('.userDataSurName').html(userData.nama_panggilan);
             $('.userDataAvatar').attr('src',userData.avatar);
+            
+            if (is_exists($_GET['note_id']) == true){
+                $.post(appServer + '/push-data', {
+                    user_session:loadData('app_storage_login_session'),
+                    option_data:btoa(JSON.stringify(['diary_single'])),
+                    input_data:btoa(JSON.stringify({0:$_GET['note_id']}))
+                }).done(function(data, status){
+                    if (data.result == 0){
+                        $('.diaryDataJudul').html(data.diary[$_GET['note_id']].judul);
+                        $('.diaryDataDate').html(data.diary[$_GET['note_id']].updated_ago);
+                        $('.diaryDataIsi').html(data.diary[$_GET['note_id']].isi);
+                        $('.diaryDataEditUrl').attr('href','notes-edit.html?note_id='+$_GET['note_id'])
+                        $('.diaryDataRemoveUrl').attr('href','notes-remove.html?note_id='+$_GET['note_id'])
+                    }else{
+                        window.location.replace('notes.html?pesan='+'Diari tidak ditemukan!');
+                    }
+                    console.log(data);
+                }).fail(function(xhr, status, error) {
+                    window.location.replace('error.html?pesan='+'Periksa Koneksi Internet Anda!['+error+']');
+                });
+            }
         }
+        clearInterval(intervalLoadData);
     },500);
 </script>
 </html>
