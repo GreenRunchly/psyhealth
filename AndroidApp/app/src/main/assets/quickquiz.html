@@ -43,7 +43,7 @@
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-subtitle">
-                <h2>Kuis ini berisi 20 pertanyaan.</h2>
+                <h2>Kuis ini berisi <span class="quizCount"></span> pertanyaan.</h2>
             </div>
         </div>
     </div><br>
@@ -58,7 +58,10 @@
         <div class="content form-content">
             <div class="form-input">
                 <label class="quizSliderLabel">Geser slider</label>
-                <input type="range" min="0" max="400" value="200" class="slider-input quizSliderInput" id="myRange">
+                <div class="slider-input-container">
+                    <div class="slider-input-effect"></div>
+                    <input type="range" min="0" max="400" value="0" class="slider-input quizSliderInput" id="myRange">
+                </div>
             </div>
             <br><br>
             <div class="content-partition">
@@ -95,6 +98,7 @@
     ///Load User Data
     var intervalLoadData = setInterval(function () {
         if (is_exists(userData.quick_quiz) == true){
+            $(".quizCount").html(userData.quick_quiz.question_count);
             ///Load News Slides
             if (is_exists(userData.quick_quiz.question) == true){
                 var addSlides = '';
@@ -114,6 +118,9 @@
                 $('.quizExeNext').attr('slide-ke',quizNumber);
                 $('.quizSliderLabel').html(pilihanText[2]);
             }
+            if ((quizNumber == quizNumberMax)){
+                $(".quizExeNext").html('Selesai');
+            }
             clearInterval(intervalLoadData);
         }
     },500);
@@ -126,8 +133,9 @@
             quizNumber ++;
             $('.quizDesc').html(userData.quick_quiz.question[quizNumber])
             $('.quizExeNext').attr('slide-ke',quizNumber);
-            $('.quizSliderInput').val(200);
-            $('.quizSliderLabel').html(pilihanText[2]);
+            $('.quizSliderInput').val(0);
+            sliderChange();
+            $('.quizSliderLabel').html(pilihanText[0]);
             swipedrawer.slideTo($(this).attr('slide-ke'));
 
             console.log(quizNumber + ' - ' + quizNumberMax + ' - ' + quizAnswered);
@@ -157,7 +165,9 @@
     var pilihanText = ['Tidak Pernah','Jarang','Kadang-Kadang','Sering','Selalu'];
     $(document).on('input','.slider-input',function(e){
         var pilihan = roundSelection($(this).val(),$(this).attr('max'));
-        $(this).siblings('label').html(pilihanText[pilihan]);
+        $(this).parent().siblings('label').html(pilihanText[pilihan]);
+        sliderChange(); 
     });
+    
 </script>
 </html>

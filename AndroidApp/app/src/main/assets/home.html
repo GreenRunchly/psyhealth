@@ -54,8 +54,11 @@
     <div class="container form-parent" id="kabar-form">
         <div class="content form-content">
             <div class="form-input">
-                <label class="kabarSliderLabel">Senang</label>
-                <input type="range" min="0" max="400" value="200" class="slider-input kabarSliderInput" id="myRange">
+                <label class="kabarSliderLabel">Sangat Sedih</label>
+                <div class="slider-input-container">
+                    <div class="slider-input-effect"></div>
+                    <input type="range" min="0" max="400" value="0" class="slider-input kabarSliderInput" id="myRange">
+                </div>
             </div>
             <div class="content-partition">
                 <button class="kabarExecute">Selesai</button>
@@ -89,6 +92,7 @@
         $(document).on('input','.slider-input',function(e){
             var pilihan = roundSelection($(this).val(),$(this).attr('max'));
             $(this).siblings('label').html(pilihanText[pilihan]);
+            sliderChange(); 
         });
     </script>
 

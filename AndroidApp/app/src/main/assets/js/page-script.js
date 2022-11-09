@@ -30,4 +30,12 @@ $(document).on('click','.to-page',function(e){
 $(document).on('click','.halamanMundur',function(e){
     history.back()
 });
-
+function sliderChange() {
+    $(document).find(".slider-input").each(function() {
+        $(this).siblings('.slider-input-effect').css('width', 'calc(' + (30 - (($(this).val()/$(this).attr('max'))*30)) + 'px + '+(($(this).val()/$(this).attr('max'))*100+'%)') );
+    });
+}
+$(document).on('input','.slider-input',function(e){
+    sliderChange(); 
+});
+sliderChange();
