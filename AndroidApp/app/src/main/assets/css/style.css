@@ -107,7 +107,8 @@ textarea.readonly{
 /* just effect */
 .hr{
     display: flex;
-    height: 1px;
+    height: 3px;
+    border-radius: 3px;
     background-color: black;
     width: 70%;
     margin: 16px calc(15%);
@@ -195,28 +196,29 @@ textarea.readonly{
     transition: opacity .2s;
     padding: 0 ;
     margin: 16px 0px;
-    border-radius: 8px;
+    border-radius: 16px;
 }
 .slider-input::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   width: 50px; /* Set a specific slider handle width */
-  height: 30px; /* Slider handle height */
+  height: 40px; /* Slider handle height */
   background: #1c4342; /* Green background */
   cursor: pointer; /* Cursor on hover */
-  border-radius: 8px;
+  border-radius: 16px;
+  background-image: url('');
 }
 
 .slider-input::-moz-range-thumb {
-  width: 20px; /* Set a specific slider handle width */
-  height: 26px; /* Slider handle height */
+  width: 52px; /* Set a specific slider handle width */
+  height: 32px; /* Slider handle height */
   background: #1c4342; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 .slider-input-container:has(.slider-input){
     width: 100%;
     height: 30px;
-    border-radius: 8px;
+    border-radius: 16px;
     background-color: #dadce0;
     overflow: hidden;
 }
@@ -231,7 +233,7 @@ textarea.readonly{
 .slider-input-effect{
     width: 100%;
     height: 30px;
-    border-radius: 8px;
+    border-radius: 16px;
     background-color: #3a8f8c;
 }
 /* Brand logo */
@@ -615,4 +617,7 @@ textarea.readonly{
 }
 .userDataSurName.lowercase{
     text-transform: lowercase;
+}
+.main-button-red{
+    background-color: #ba342a !important;
 }

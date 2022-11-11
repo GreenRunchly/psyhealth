@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val uniqueID: String =
             Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        Log.d("IDPerangkat",uniqueID)
+        ///Log.d("IDPerangkat",uniqueID)
 
         val mWebView = findViewById<View>(R.id.WebView) as WebView
 
@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
 
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
+                if (url != null && (url.startsWith("file:///android_asset/settings-apply.html?apply"))){
+                    Log.d("URL","Theme applied!")
+                }
                 if (url != null && (url.startsWith("file:///"))) {
                     return false
                 } else {

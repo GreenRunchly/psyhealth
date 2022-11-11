@@ -5,7 +5,19 @@ var appServer = 'https://app.ieu.link/psyhealth'; /// tanpa slash di akhir 'http
 var appConnected = true;
 var appSettingsDebugMode = true;
 
-var appSettingsTheme = 'dark-theme';
+///Apply Theme Settings
+if (is_exists(loadData('app_settings_theme')) == true){}else{
+    setData('dark-theme','app_settings_theme');
+}
+
+var appSettingsTheme = loadData('app_settings_theme');
+$("#app-theme").attr("href","css/" + appSettingsTheme + ".css");
+if (appSettingsTheme == 'dark-theme'){
+    $(".app-cloack-id").css("background-color","#303841");
+    
+}
+
+
 
 /* Penyetelan Tanggal dan Waktu */
 var appDate = new Date();
