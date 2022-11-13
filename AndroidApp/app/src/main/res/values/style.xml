@@ -16,4 +16,7 @@
         <item name="android:colorPrimary">@color/main_sand</item>
         <item name="android:textColorPrimary">@color/black</item>
     </style>
+    <style name="mainAppThemeNight" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/main_blue_navy</item>
+    </style>
 </resources>

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package id.greenrunchly.psyhealth
 
 import android.app.*
@@ -11,15 +13,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme()
         setContentView(R.layout.activity_main)
 
         scheduleNotification(5,0)
@@ -42,14 +43,21 @@ class MainActivity : AppCompatActivity() {
         mWebView.isVerticalScrollBarEnabled = false
         mWebView.isHorizontalScrollBarEnabled = false
 
-        mWebView.loadUrl("file:///android_asset/check-socket.html?uniq_id=$uniqueID")
+        mWebView.loadUrl("file:///android_asset/load-settings.html?uniq_id=$uniqueID")
 
         class MyWebViewClient : WebViewClient() {
 
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                if (url != null && (url.startsWith("file:///android_asset/settings-apply.html?apply"))){
-                    Log.d("URL","Theme applied!")
+                if (url != null && (url.contains("theme=light-theme"))){
+                    ///Log.d("URL","Theme switch!")
+                    switchThemeManual(PAGI)
+                    recreate()
+                }
+                if (url != null && (url.contains("theme=dark-theme"))){
+                    ///Log.d("URL","Theme switch!")
+                    switchThemeManual(MALAM)
+                    recreate()
                 }
                 if (url != null && (url.startsWith("file:///"))) {
                     return false

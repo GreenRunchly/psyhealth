@@ -88,7 +88,8 @@
     if (is_exists(loadData('app_storage_login_session')) == true){
         if (is_exists($_GET['keluar_user']) == true){
             $.post(appServer + '/signout', {
-                user_session:loadData('app_storage_login_session')
+                user_session:loadData('app_storage_login_session'),
+                uniq_id:loadData('app_storage_deviceid')
             }).done(function(data, status){
                 if (data.result == 0){
                     appDeleteStorage('app_storage_login_session');
@@ -109,7 +110,8 @@
     if (is_exists(loadData('app_storage_deviceid')) == true){
         if (is_exists($_GET['masuk_user']) == true){
             $.post(appServer + '/signin', {
-                email_user:$_GET['email_user']
+                email_user:$_GET['email_user'],
+                uniq_id:loadData('app_storage_deviceid')
             }).done(function(data, status){
                 if (data.result == 0){
                     setData(data.session,'app_storage_login_session');
@@ -127,7 +129,8 @@
             $.post(appServer + '/signup', {
                 email_user:$_GET['email_user'],
                 nama_user:$_GET['nama_user'],
-                kelas_user:$_GET['kelas_user']
+                kelas_user:$_GET['kelas_user'],
+                uniq_id:loadData('app_storage_deviceid')
             }).done(function(data, status){
                 if (data.result == 0){
                     setData(data.session,'app_storage_login_session');

@@ -13,10 +13,14 @@ if (is_exists(loadData('app_settings_theme')) == true){}else{
 var appSettingsTheme = loadData('app_settings_theme');
 $("#app-theme").attr("href","css/" + appSettingsTheme + ".css");
 if (appSettingsTheme == 'dark-theme'){
-    $(".app-cloack-id").css("background-color","#303841");
-    
+    $(".app-cloack-id").css("background-color","#73a3ce");
+    appSettingsThemeOther = 'light-theme';
+    $(".appSettingsTheme").html('<i class="fas fa-moon"></i>');
+}else{
+    appSettingsThemeOther = 'dark-theme';
+    $(".appSettingsTheme").html('<i class="far fa-moon"></i>');
 }
-
+$(".appSettingsTheme").attr('href','settings-apply.html?theme='+appSettingsThemeOther);
 
 
 /* Penyetelan Tanggal dan Waktu */

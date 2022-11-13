@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="title" content="PsyHealth">
+    <meta name="author" content="GreenRunchly">
+    
+    <title>PsyHealth - Checking Credential</title>
+
+    <!--- Style --->
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" id="app-theme" href=""/>
+    
+    <!--- Script --->
+    <script src="js/jquery-3.5.1.min.js"></script>
+
+</head>
+<body>
+    <div class="app-cloack-id" style="display: flex;align-items: center;justify-content: center;width: 100%;height: 100vh;background-color: #e2ddca;position:fixed;top:0;left:0;z-index: 9999;">
+        <i class="fas fa-spinner-third" style="font-size: 41px;animation: spin-anim 1s infinite;"></i>
+    </div>
+</body>
+<script src="js/get.js"></script>
+<script src="js/function.js"></script>
+<script src="js/system-script.js"></script>
+<script src="js/page-script.js"></script>
+<script type="text/javascript">
+    if (is_exists(loadData('is_starup')) == true){
+        if (loadData('is_starup') == 0){
+            ///Applying settings
+            setData(1,'is_starup');
+            window.location.replace('load-settings.html?done=' + $_GET['uniq_id'] + '&theme=' + loadData('app_settings_theme'));
+        }else{
+            window.location.replace('check-socket.html?uniq_id=' + $_GET['done']);
+        }
+    }else{
+        ///Applying settings
+        setData(0,'is_starup');
+        window.location.replace('load-settings.html?done=' + $_GET['uniq_id'] + '&theme=' + loadData('app_settings_theme'));
+    }
+    
+</script>
+</html>

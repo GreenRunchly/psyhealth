@@ -37,5 +37,9 @@
     }else{
 
     }
+    ///Applying theme
+    if (is_exists($_GET['theme'])){
+        setData($_GET['theme'],'app_settings_theme');
+    }
 </script>
 </html>
