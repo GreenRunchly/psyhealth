@@ -3,6 +3,7 @@ window.onload = function () {
     var intervalLoadingScreen = setInterval(function () {
         $("body").css('overflow-y','auto');
         $(".app-cloack").fadeOut(500);
+
         clearInterval(intervalLoadingScreen);
     },500);
 }
