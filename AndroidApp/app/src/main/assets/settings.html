@@ -43,10 +43,13 @@
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-title">
-                <h1>Profile</h1>
+                <h1>Biodata</h1>
             </div>
             <div class="explore-subtitle">
                 <h2>Informasi akun mu.</h2>
+            </div>
+            <div class="explore-subtitle">
+                <h2 class="pesan_get" style="color: red;"></h2>
             </div>
         </div>
     </div><br>
@@ -55,21 +58,42 @@
             <form>
                 <div class="form-input">
                     <label>Email</label>
-                    <input type="email" name="email_user" readonly class="userDataEmail">
+                    <input type="email" name="email_user" placeholder="Masukan Email" readonly class="userDataEmail">
                 </div>
                 <div class="form-input">
                     <label>Nama Lengkap</label>
-                    <input type="text" name="nama_user" readonly class="userDataNama">
+                    <input type="text" name="nama_user" placeholder="Masukan Nama Lengkap" required class="userDataNama">
                 </div>
                 <div class="form-input">
-                    <label>Kelas</label>
-                    <input type="text" name="kelas_user" readonly class="userDataKelas">
+                    <label>Jenis Kelamin</label>
+                    <select name="jeniskelamin_user" class="userDataKelamin">
+                        <option value="1">Laki-laki</option>
+                        <option value="2">Perempuan</option>
+                    </select>    
+                </div>
+                <div class="form-input">
+                    <label>Umur</label>
+                    <select name="umur_user" class="userDataUmur">
+                        <option value="1">11-14 Tahun</option>
+                        <option value="2">15-17 Tahun</option>
+                        <option value="3">18-21 Tahun</option>
+                        <option value="4">21+ Tahun</option>
+                    </select>    
+                </div>
+                <div class="form-input">
+                    <label>Siswa/i SMAN 3?</label>
+                    <select name="kelas_user" class="userDataKelas">
+                        <option value="1">Tidak</option>
+                        <option value="10">Kelas 10</option>
+                        <option value="11">Kelas 11</option>
+                        <option value="12">Kelas 12</option>
+                    </select>
+                </div>
+                <div class="form-input">
+                    <input type="submit" name="save_user" value="Simpan Perubahan">
                 </div>
             </form>
             <div class="hr"></div>
-            <div class="form-input">
-                <a class="main-button" href="settings-apply.html?apply=2fa">Setup 2FA</a>
-            </div>
             <div class="form-input">
                 <a class="main-button main-button-red" href="portal.html?keluar_user=true">Keluar</a>
             </div>
@@ -86,12 +110,41 @@
 <script src="js/page-script.js"></script>
 <script src="js/check-credential.js"></script>
 <script type="text/javascript">
+    if (is_exists(loadData('app_storage_login_session')) == true){
+        if (is_exists($_GET['save_user']) == true){
+            biodataFill = {};
+            biodataFill['nama_lengkap'] = $_GET['nama_user'];
+            biodataFill['umur'] = $_GET['umur_user'];
+            biodataFill['jenis_kelamin'] = $_GET['jeniskelamin_user'];
+            biodataFill['kelas'] = $_GET['kelas_user'];
+
+            $.post(appServer + '/push-data', {
+                user_session:loadData('app_storage_login_session'),
+                option_data:btoa(JSON.stringify(['biodata'])),
+                input_data:btoa(JSON.stringify({0:biodataFill}))
+            }).done(function(data, status){
+                if (data.result == 0){
+                    console.log(biodataFill);
+                    console.log(data.result);
+                    window.location.replace('?pesan='+data.pesan);
+                }else{
+                    window.location.replace('?pesan='+data.pesan+'['+data.result+']');
+                }
+                console.log(data);
+            }).fail(function(xhr, status, error) {
+                window.location.replace('error.html?pesan='+'Periksa Koneksi Internet Anda! ['+status+']');
+            });
+            console.log($_GET['save_user']);
+        }
+    }
     ///Load User Data
     var intervalLoadData = setInterval(function () {
         if (is_exists(userData) == true){
             $('.userDataNama').val(userData.nama);
             $('.userDataEmail').val(userData.email);
-            $('.userDataKelas').val(userData.kelas);
+            $('.userDataUmur').val(userData.umur_raw);
+            $('.userDataKelamin').val(userData.jenis_kelamin_raw);
+            $('.userDataKelas').val(userData.kelas_raw);
             $('.userDataAvatar').attr('src',userData.avatar);
 
             if (is_exists(userData.kabar_quiz) == true){

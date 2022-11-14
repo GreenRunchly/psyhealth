@@ -26,6 +26,15 @@
     <div class="app-cloack app-cloack-id" style="display: flex;align-items: center;justify-content: center;width: 100%;height: 100vh;background-color: #e2ddca;position:fixed;top:0;left:0;z-index: 9999;">
         <i class="fas fa-spinner-third" style="font-size: 41px;animation: spin-anim 1s infinite;"></i>
     </div>
+
+    <div class="tutorial-dim on toggle" id="tutorial-dim" toggle-id="tutorial-dim">
+        <img src="assets/tutorial/1.png">
+        <div class="tutorial-desc">
+            <p>Geser titik ke kanan atau ke kiri untuk menentukan jawaban<br><br>klik Selanjutnya untuk melanjutkan pertanyaan selanjutnya.</p>
+            <br><p>Tekan mana saja untuk menghilangkan pesan ini.</p>
+        </div>
+    </div>
+
     <div class="bg-effect"></div>
     <div class="bg-effect-bottom"></div><br>
     <div class="container swipe-parent swipe-count">
@@ -149,7 +158,7 @@
                 input_data:btoa(JSON.stringify({0:quizAnswered}))
             }).done(function(data, status){
                 if (data.result == 0){
-                    window.location.replace('check-socket.html');
+                    window.location.replace('quickquiz-result.html');
                 }else{
                     window.location.replace('error.html?pesan='+data.pesan+'['+data.result+']'); 
                 }

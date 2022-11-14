@@ -111,7 +111,7 @@ textarea.readonly{
     border-radius: 3px;
     background-color: black;
     width: 70%;
-    margin: 16px calc(15%);
+    margin: 32px calc(15%);
 }
 .bg-effect{
     position: fixed;
@@ -138,7 +138,37 @@ textarea.readonly{
     background-position: bottom;
     z-index: -9;
 }
-
+.tutorial-dim{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+    overflow:hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+.tutorial-dim img{
+    width: calc(100% - 32px);
+}
+.tutorial-dim.on{
+    transform: translateX(0%);
+    opacity: 1;
+}
+.tutorial-desc{
+    margin:16px;
+    font-size: 18px;
+    color: white;
+    text-align: left;
+}
 /*This what makes app looks alive!*/
 .container{
     display: block;
@@ -262,6 +292,7 @@ textarea.readonly{
     min-height: 100vh;
 }
 .center-parent .center-content{
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -582,6 +613,17 @@ textarea.readonly{
 .swiper-count-water .swipe-content .swiper-slide.empty .swipe-box-small h4{
     color: #5c99c9;
     font-weight: bold;
+}
+/* Quick Quiz */
+.swiper-count-quickquiz .swipe-content .swiper-slide .swipe-box{
+    width: 160px;
+    height: 160px;
+    margin: 0px;
+    font-size: 30px;
+}
+.swiper-count-quickquiz .swipe-content .swiper-slide h4{
+    font-size: 50px;
+    color: white;
 }
 
 /* Login Container */

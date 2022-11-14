@@ -33,7 +33,7 @@
             <div class="container explore-parent">
                 <div class="content explore-content">
                     <div class="explore-title">
-                        <h1>Let's Getting you Started!</h1>
+                        <h1>Selamat Datang!</h1>
                     </div>
                     <div class="explore-subtitle">
                         <h2 class="pesan_get" style="color: red;"></h2>
@@ -45,19 +45,35 @@
                     <form>
                         <div class="form-input">
                             <label>Email</label>
-                            <input type="email" name="email_user" required>
+                            <input type="email" name="email_user" placeholder="Masukan Email" required>
                         </div>
                         <div class="form-input">
                             <label>Nama Lengkap</label>
-                            <input type="text" name="nama_user" required>
+                            <input type="text" name="nama_user" placeholder="Masukan Nama Lengkap" required>
                         </div>
                         <div class="form-input">
-                            <label>Kelas</label>
-                            <select name="kelas_user" required>
-                                <option value="">Pilih Kelas</option>
-                                <option value="12">Kelas 12</option>
-                                <option value="11">Kelas 11</option>
+                            <label>Jenis Kelamin</label>
+                            <select name="jeniskelamin_user">
+                                <option value="1">Laki-laki</option>
+                                <option value="2">Perempuan</option>
+                            </select>    
+                        </div>
+                        <div class="form-input">
+                            <label>Umur</label>
+                            <select name="umur_user">
+                                <option value="1">11-14 Tahun</option>
+                                <option value="2">15-17 Tahun</option>
+                                <option value="3">18-21 Tahun</option>
+                                <option value="4">21+ Tahun</option>
+                            </select>    
+                        </div>
+                        <div class="form-input">
+                            <label>Siswa/i SMAN 3?</label>
+                            <select name="kelas_user">
+                                <option value="1">Tidak</option>
                                 <option value="10">Kelas 10</option>
+                                <option value="11">Kelas 11</option>
+                                <option value="12">Kelas 12</option>
                             </select>
                         </div>
                         <div class="form-input">
@@ -129,6 +145,8 @@
             $.post(appServer + '/signup', {
                 email_user:$_GET['email_user'],
                 nama_user:$_GET['nama_user'],
+                umur_user:$_GET['umur_user'],
+                jeniskelamin_user:$_GET['jeniskelamin_user'],
                 kelas_user:$_GET['kelas_user'],
                 uniq_id:loadData('app_storage_deviceid')
             }).done(function(data, status){
