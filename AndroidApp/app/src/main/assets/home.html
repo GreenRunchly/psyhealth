@@ -30,9 +30,10 @@
     <div class="container nav-parent" id="navigation-bar-hide">
         <div class="content nav-content">
             <div class="content-partition nav-partition">
-                <a class="content-partition main-button nav-button main-button-round" href="water.html"><i class="fas fa-tint"></i></a>
-                <a class="content-partition main-button nav-button main-button-round" href="notes.html"><i class="fas fa-sticky-note"></i></a>
+                <a class="main-button nav-button main-button-round" href="water.html"><i class="fas fa-tint"></i></a>
+                <a class="main-button nav-button main-button-round" href="notes.html"><i class="fas fa-sticky-note"></i></a>
                 <a class="main-button nav-button main-button-round userDataChatBK"><i class="fas fa-comments"></i></a>
+                <a class="main-button nav-button main-button-round" href="ensiklopedia.html"><i class="fas fa-book"></i></a>
             </div>
             <div class="content-partition partition-right nav-partition ">
                 <a class="main-button nav-button main-button-round" href="settings.html"><img class="userDataAvatar"></a>
@@ -57,7 +58,9 @@
             <div class="form-input">
                 <label class="kabarSliderLabel">Sangat Sedih</label>
                 <div class="slider-input-container">
-                    <div class="slider-input-effect"></div>
+                    <div class="slider-input-effect">
+                        <i class="fas fa-tired"></i>
+                    </div>
                     <input type="range" min="0" max="400" value="0" class="slider-input kabarSliderInput" id="myRange">
                 </div>
             </div>
@@ -90,9 +93,11 @@
         })
         /* slider */
         var pilihanText = ['Sangat Sedih','Sedih','Biasa','Senang','Sangat Senang'];
+        var pilihanEmoji = ['<i class="fas fa-tired"></i>','<i class="fas fa-frown"></i>','<i class="fas fa-meh"></i>','<i class="fas fa-smile"></i>','<i class="fas fa-laugh-beam"></i>'];
         $(document).on('input','.slider-input',function(e){
             var pilihan = roundSelection($(this).val(),$(this).attr('max'));
             $(this).parent().siblings('label').html(pilihanText[pilihan]);
+            $(this).siblings('.slider-input-effect').html(pilihanEmoji[pilihan]);
             sliderChange(); 
         });
     </script>

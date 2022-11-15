@@ -233,24 +233,16 @@ textarea.readonly{
   appearance: none;
   width: 50px; /* Set a specific slider handle width */
   height: 40px; /* Slider handle height */
-  background: #1c4342; /* Green background */
+  /*background: #1c4342;*/ /* Green background */
   cursor: pointer; /* Cursor on hover */
   border-radius: 16px;
-  background-image: url('');
-}
-
-.slider-input::-moz-range-thumb {
-  width: 52px; /* Set a specific slider handle width */
-  height: 32px; /* Slider handle height */
-  background: #1c4342; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  background-color: rgba(0, 0, 0, 0);
 }
 .slider-input-container:has(.slider-input){
     width: 100%;
     height: 30px;
     border-radius: 16px;
     background-color: #dadce0;
-    overflow: hidden;
 }
 .slider-input-container:has(.slider-input){
     margin: 16px 0px;   
@@ -261,11 +253,38 @@ textarea.readonly{
     margin: 0px;
 }
 .slider-input-effect{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     width: 100%;
     height: 30px;
     border-radius: 16px;
     background-color: #3a8f8c;
 }
+.slider-input-effect i{
+    font-size: 41px;
+    color: #ffffff;
+    background-color: #1c4342 ;
+    border-radius: 100%;
+    padding: 5px;
+}
+/*
+.slider-input-effect i.fa-sad-cry{
+    color: #fe2d00;
+}
+.slider-input-effect i.fa-frown{
+    color: #feb200;
+}
+.slider-input-effect i.fa-meh{
+    color: #faf101;
+}
+.slider-input-effect i.fa-smile{
+    color: #ade400;
+}
+.slider-input-effect i.fa-laugh-beam{
+    color: #31a200;
+}*/
+
 /* Brand logo */
 .brand-parent{
 }
@@ -321,7 +340,6 @@ textarea.readonly{
     display: flex;
     width: 100%;
     flex-grow: 1;
-    max-width: 50%;
     justify-content: flex-start;
 }
 .nav-partition.partition-right{
@@ -384,6 +402,16 @@ textarea.readonly{
 }
 .explore-parent .explore-content .explore-subtitle.subtitle-center h1{
     text-align: center;
+}
+.explore-parent .explore-content .explore-subcontent{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 8px;
+}
+.explore-parent .explore-content .explore-subcontent{
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.2;
 }
 
 /* swiper */
@@ -620,6 +648,7 @@ textarea.readonly{
     height: 160px;
     margin: 0px;
     font-size: 30px;
+    border: 16px solid #5c99c9;
 }
 .swiper-count-quickquiz .swipe-content .swiper-slide h4{
     font-size: 50px;

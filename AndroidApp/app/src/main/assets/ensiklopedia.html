@@ -9,7 +9,7 @@
     <meta name="title" content="PsyHealth">
     <meta name="author" content="GreenRunchly">
     
-    <title>PsyHealth - Notes Opener</title>
+    <title>PsyHealth - Home</title>
     
     <!--- Style --->
     <link rel="stylesheet" href="js/swiper/swiper-bundle.min.css">
@@ -30,32 +30,35 @@
     <div class="container nav-parent" id="navigation-bar-hide">
         <div class="content nav-content">
             <div class="content-partition nav-partition">
-                <a class="content-partition main-button nav-button main-button-round" href="notes.html" ><i class="fas fa-chevron-left"></i></a>
+                <a class="content-partition main-button nav-button main-button-round halamanMundur"><i class="fas fa-chevron-left"></i></a>
             </div>
             <div class="content-partition partition-right nav-partition ">
-                <a class="content-partition main-button nav-button main-button-round diaryDataEditUrl" ><i class="fas fa-pencil"></i></a>
-                <a class="content-partition main-button nav-button main-button-round diaryDataRemoveUrl" ><i class="fas fa-trash"></i></a>
                 <a class="main-button nav-button main-button-round" href="settings.html"><img class="userDataAvatar"></a>
             </div>
         </div>
     </div>
+    
     <br><br><br>
     <div class="container explore-parent">
         <div class="content explore-content">
-            <div class="explore-title title-center">
-                <h1 class="diaryDataJudul">...</h1>
+            <div class="explore-title">
+                <h1>Ensiklopedia</h1>
             </div>
-            <div class="explore-subtitle subtitle-center">
-                <h2 class="diaryDataDate">...</h2>
+            <div class="explore-subtitle">
+                <h2>Informasi ringkas kesehatan mental.</h2>
             </div>
         </div>
     </div><br>
     <div class="container explore-parent">
-        <div class="content explore-content">
-            <textarea class="diaryDataIsi readonly" readonly></textarea>
+        <div class="content explore-content listEnsiklopedia">
+            
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    ///Optional Data Needed
+    var userDataNeed = btoa(JSON.stringify(['ensiklopedia']));
+</script>
 <script src="js/get.js"></script>
 <script src="js/function.js"></script>
 <script src="js/system-script.js"></script>
@@ -67,29 +70,23 @@
         if (is_exists(userData) == true){
             $('.userDataSurName').html(userData.nama_panggilan);
             $('.userDataAvatar').attr('src',userData.avatar);
-            
-            if (is_exists($_GET['note_id']) == true){
-                $.post(appServer + '/push-data', {
-                    user_session:loadData('app_storage_login_session'),
-                    option_data:btoa(JSON.stringify(['diary_single'])),
-                    input_data:btoa(JSON.stringify({0:$_GET['note_id']}))
-                }).done(function(data, status){
-                    if (data.result == 0){
-                        $('.diaryDataJudul').html(data.diary[$_GET['note_id']].judul);
-                        $('.diaryDataDate').html(data.diary[$_GET['note_id']].updated_ago);
-                        $('.diaryDataIsi').html(data.diary[$_GET['note_id']].isi);
-                        $('.diaryDataEditUrl').attr('href','notes-edit.html?note_id='+$_GET['note_id'])
-                        $('.diaryDataRemoveUrl').attr('href','notes-remove.html?note_id='+$_GET['note_id'])
-                    }else{
-                        window.location.replace('notes.html?pesan='+'Diari tidak ditemukan!');
-                    }
-                    console.log(data);
-                }).fail(function(xhr, status, error) {
-                    window.location.replace('error.html?pesan='+'Periksa Koneksi Internet Anda!['+error+']');
-                });
+
+            ///Load Ensiklopedia
+            if (is_exists(userData.ensiklopedia) == true){
+                var addHtml = '';
+                $.each(userData.ensiklopedia, function( index, value ) {
+                    addHtml += '<div class="explore-title">';
+                    addHtml += '<h2>'+value.judul+'</h2>';
+                    addHtml += '</div>';
+                    addHtml += '<div class="explore-subcontent">';
+                    addHtml += value.konten;
+                    addHtml += '</div><br>';
+                }); 
+                $(".listEnsiklopedia").append(addHtml);
             }
+            
+            clearInterval(intervalLoadData);
         }
-        clearInterval(intervalLoadData);
     },500);
 </script>
 </html>

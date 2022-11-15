@@ -30,7 +30,7 @@
     <div class="tutorial-dim on toggle" id="tutorial-dim" toggle-id="tutorial-dim">
         <img src="assets/tutorial/1.png">
         <div class="tutorial-desc">
-            <p>Geser titik ke kanan atau ke kiri untuk menentukan jawaban<br><br>klik Selanjutnya untuk melanjutkan pertanyaan selanjutnya.</p>
+            <p>Geser emoji ke kanan atau ke kiri untuk menentukan jawaban<br><br>klik Selanjutnya untuk melanjutkan pertanyaan selanjutnya.</p>
             <br><p>Tekan mana saja untuk menghilangkan pesan ini.</p>
         </div>
     </div>
@@ -69,7 +69,9 @@
             <div class="form-input">
                 <label class="quizSliderLabel">Geser slider</label>
                 <div class="slider-input-container">
-                    <div class="slider-input-effect"></div>
+                    <div class="slider-input-effect">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
                     <input type="range" min="0" max="400" value="0" class="slider-input quizSliderInput" id="myRange">
                 </div>
             </div>
@@ -126,10 +128,13 @@
                 ///Load first Question
                 $('.quizDesc').html(userData.quick_quiz.question[quizNumber])
                 $('.quizExeNext').attr('slide-ke',quizNumber);
-                $('.quizSliderLabel').html(pilihanText[2]);
+                $('.quizSliderLabel').html(pilihanText[0]);
             }
             if ((quizNumber == quizNumberMax)){
                 $(".quizExeNext").html('Selesai');
+            }
+            if (userData.quick_quiz.done == 1){
+                window.location.replace('home.html');
             }
             clearInterval(intervalLoadData);
         }
@@ -144,7 +149,7 @@
             $('.quizDesc').html(userData.quick_quiz.question[quizNumber])
             $('.quizExeNext').attr('slide-ke',quizNumber);
             $('.quizSliderInput').val(0);
-            sliderChange();
+            sliderChange(pilihanEmoji);
             $('.quizSliderLabel').html(pilihanText[0]);
             swipedrawer.slideTo($(this).attr('slide-ke'));
 
@@ -174,9 +179,11 @@
     })
     /* slider */
     var pilihanText = ['Tidak Pernah','Jarang','Kadang-Kadang','Sering','Selalu'];
+    var pilihanEmoji = ['<i class="fas fa-laugh-beam"></i>','<i class="fas fa-smile"></i>','<i class="fas fa-meh"></i>','<i class="fas fa-frown"></i>','<i class="fas fa-tired"></i>'];
     $(document).on('input','.slider-input',function(e){
         var pilihan = roundSelection($(this).val(),$(this).attr('max'));
         $(this).parent().siblings('label').html(pilihanText[pilihan]);
+        $(this).siblings('.slider-input-effect').html(pilihanEmoji[pilihan]);
         sliderChange(); 
     });
     

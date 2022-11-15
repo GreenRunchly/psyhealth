@@ -31,9 +31,12 @@ $(document).on('click','.to-page',function(e){
 $(document).on('click','.halamanMundur',function(e){
     history.back()
 });
-function sliderChange() {
+function sliderChange(icon) {
     $(document).find(".slider-input").each(function() {
-        $(this).siblings('.slider-input-effect').css('width', 'calc(' + (30 - (($(this).val()/$(this).attr('max'))*30)) + 'px + '+(($(this).val()/$(this).attr('max'))*100+'%)') );
+        $(this).siblings('.slider-input-effect').css('width', 'calc(' + (44 - (($(this).val()/$(this).attr('max'))*44)) + 'px + '+(($(this).val()/$(this).attr('max'))*100+'%)') );
+        if (is_exists(icon) == true){
+            $(this).siblings('.slider-input-effect').html(icon[0]);
+        }
     });
 }
 $(document).on('input','.slider-input',function(e){
