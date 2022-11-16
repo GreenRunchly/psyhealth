@@ -47,3 +47,6 @@ textarea.readonly{
 .hr{
 	background-color: white;
 }
+.explore-parent .explore-content .explore-subcontent-block a:link{
+    color: #73a3ce;
+}

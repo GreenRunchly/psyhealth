@@ -13,7 +13,17 @@
         android:layout_height="200dp"
         android:layout_centerInParent="true"
         android:contentDescription="TODO"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo_round" />
+
+    <ImageView
+        android:id="@+id/subicon_splash"
+        android:layout_width="289dp"
+        android:layout_height="98dp"
+        android:layout_below="@id/icon_splash"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:contentDescription="TODO"
+        android:src="@drawable/sublogo" />
 
 
 </RelativeLayout>

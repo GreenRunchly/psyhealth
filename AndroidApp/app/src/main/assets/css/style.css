@@ -413,6 +413,14 @@ textarea.readonly{
     font-weight: normal;
     line-height: 1.2;
 }
+.explore-parent .explore-content .explore-subcontent-block{
+    display: block;
+    font-size: 19px;
+}
+.explore-parent .explore-content .explore-subcontent-block a:link{
+    color: blue;
+    line-height: 2;
+}
 
 /* swiper */
 .swipe-parent{
@@ -642,6 +650,17 @@ textarea.readonly{
     color: #5c99c9;
     font-weight: bold;
 }
+/* Ensiklopedia */
+
+.swipe-parent .swipe-content .swiper-slide .swipe-box.swipe-article.swipe-article-landscape-dynamic{
+    width: auto;
+    min-height: 50px;
+}
+.swipe-article-landscape.swipe-article-landscape-dynamic .swipe-article-title{
+    width: auto;
+    padding: 0px 12px;
+}
+
 /* Quick Quiz */
 .swiper-count-quickquiz .swipe-content .swiper-slide .swipe-box{
     width: 160px;

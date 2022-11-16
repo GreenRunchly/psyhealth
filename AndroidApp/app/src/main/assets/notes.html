@@ -85,7 +85,7 @@
 </body>
 <script type="text/javascript">
     ///Optional Data Needed
-    var userDataNeed = btoa(JSON.stringify(['diary','playlists']));
+    var userDataNeed = btoa(JSON.stringify(['diary','playlists','moodbooster']));
 </script>
 <script src="js/get.js"></script>
 <script src="js/function.js"></script>
@@ -177,9 +177,9 @@
             }
 
             ///Load Playlist Slides
-            if (is_exists(userData.playlists) == true){
+            if (is_exists(userData.moodbooster) == true){
                 var addSlides = '';
-                $.each(userData.playlists, function( index, value ) {
+                $.each(userData.moodbooster, function( index, value ) {
                     addSlides += '<a class="swiper-slide" href="'+value.url+'">';
                     addSlides += '<div class="swipe-box swipe-normal swipe-article swipe-article-landscape">';
                     addSlides += '<div class="swipe-thumbnail swipe-article-thumbnail" style="background-image:url('+value.thumb[0]+');"></div>';

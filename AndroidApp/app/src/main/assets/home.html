@@ -33,7 +33,6 @@
                 <a class="main-button nav-button main-button-round" href="water.html"><i class="fas fa-tint"></i></a>
                 <a class="main-button nav-button main-button-round" href="notes.html"><i class="fas fa-sticky-note"></i></a>
                 <a class="main-button nav-button main-button-round userDataChatBK"><i class="fas fa-comments"></i></a>
-                <a class="main-button nav-button main-button-round" href="ensiklopedia.html"><i class="fas fa-book"></i></a>
             </div>
             <div class="content-partition partition-right nav-partition ">
                 <a class="main-button nav-button main-button-round" href="settings.html"><img class="userDataAvatar"></a>
@@ -106,6 +105,19 @@
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-title">
+                <h2>Ensiklopedia</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container swipe-parent">
+        <div class="content swipe-content swiper-container do-swipe">
+            <div class="swiper-wrapper">
+            </div>
+        </div>
+    </div>
+    <div class="container explore-parent">
+        <div class="content explore-content">
+            <div class="explore-title">
                 <h2>News Feed</h2>
             </div>
         </div>
@@ -132,7 +144,7 @@
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-title">
-                <h2>Referensi Buku</h2>
+                <h2>Referensi Bacaan</h2>
             </div>
         </div>
     </div>
@@ -145,7 +157,7 @@
 </body>
 <script type="text/javascript">
     ///Optional Data Needed
-    var userDataNeed = btoa(JSON.stringify(['news','playlists','books','kabarquiz']));
+    var userDataNeed = btoa(JSON.stringify(['news','playlists','books','kabarquiz','ensiklopedia']));
 </script>
 <script src="js/get.js"></script>
 <script src="js/function.js"></script>
@@ -164,6 +176,21 @@
     });
 </script>
 <script type="text/javascript">
+    ///Ensiklopedia
+    var addSlides = '';
+    for (var i = 0; i <= 4; i++) {
+        addSlides += '<a class="swiper-slide">';
+        addSlides += '<div class="swipe-box swipe-normal swipe-article swipe-article-landscape">';
+        addSlides += '<div class="swipe-thumbnail swipe-article-thumbnail"></div>';
+        addSlides += '<div class="swipe-article-title">';
+        addSlides += '<h3>Memuat...</h3>';
+        addSlides += '<h4>Memuat...</h4>';
+        addSlides += '</div>';
+        addSlides += '</div>';
+        addSlides += '</a>';
+    }
+    swipedrawer[0].removeAllSlides();
+    swipedrawer[0].appendSlide(addSlides);
     ///Load Default News Slides
     var addSlides = '';
     for (var i = 0; i <= 4; i++) {
@@ -176,8 +203,8 @@
         addSlides += '</div>';
         addSlides += '</a>';
     } 
-    swipedrawer[0].removeAllSlides();
-    swipedrawer[0].appendSlide(addSlides);
+    swipedrawer[1].removeAllSlides();
+    swipedrawer[1].appendSlide(addSlides);
     ///Playlist
     var addSlides = '';
     for (var i = 0; i <= 4; i++) {
@@ -191,8 +218,8 @@
         addSlides += '</div>';
         addSlides += '</a>';
     }
-    swipedrawer[1].removeAllSlides();
-    swipedrawer[1].appendSlide(addSlides);
+    swipedrawer[2].removeAllSlides();
+    swipedrawer[2].appendSlide(addSlides);
     ///Books
     var addSlides = '';
     for (var i = 0; i <= 4; i++) {
@@ -206,8 +233,8 @@
         addSlides += '</div>';
         addSlides += '</a>';
     }
-    swipedrawer[2].removeAllSlides();
-    swipedrawer[2].appendSlide(addSlides);
+    swipedrawer[3].removeAllSlides();
+    swipedrawer[3].appendSlide(addSlides);
 
     ///Load User Data
     var intervalLoadData = setInterval(function () {
@@ -223,6 +250,38 @@
                 }
             }
 
+            ///Load Ensiklopedia Slides
+            if (is_exists(userData.ensiklopedia) == true){
+                var addSlides = '';
+                $.each(userData.ensiklopedia, function( index, value ) {
+                    addSlides += '<a class="swiper-slide" href="ensiklopedia.html?post_id='+index+'">';
+                    addSlides += '<div class="swipe-box swipe-normal swipe-article swipe-article-landscape swipe-article-landscape-dynamic">';
+                    //addSlides += '<div class="swipe-thumbnail swipe-article-thumbnail" style="background-image:url('+value.thumb[0]+');"></div>';
+                    addSlides += '<div class="swipe-article-title">';
+                    addSlides += '<h3>'+value.judul+'</h3>';
+                    addSlides += '</div>';
+                    addSlides += '</div>';
+                    addSlides += '</a>';
+                }); 
+                swipedrawer[0].removeAllSlides();
+                swipedrawer[0].appendSlide(addSlides);
+            }else{
+                var addSlides = '';
+                for (var i = 0; i <= 4; i++) {
+                    addSlides += '<a class="swiper-slide">';
+                    addSlides += '<div class="swipe-box swipe-normal swipe-article swipe-article-landscape swipe-article-landscape-dynamic">';
+                    //addSlides += '<div class="swipe-thumbnail swipe-article-thumbnail"></div>';
+                    addSlides += '<div class="swipe-article-title">';
+                    addSlides += '<h3>API Failed</h3>';
+                    addSlides += '<h4></h4>';
+                    addSlides += '</div>';
+                    addSlides += '</div>';
+                    addSlides += '</a>';
+                }
+                swipedrawer[0].removeAllSlides();
+                swipedrawer[0].appendSlide(addSlides);
+            }
+
             ///Load News Slides
             if (is_exists(userData.news) == true){
                 var addSlides = '';
@@ -236,8 +295,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }); 
-                swipedrawer[0].removeAllSlides();
-                swipedrawer[0].appendSlide(addSlides);
+                swipedrawer[1].removeAllSlides();
+                swipedrawer[1].appendSlide(addSlides);
             }else{
                 var addSlides = '';
                 for (var i = 0; i <= 4; i++) {
@@ -250,8 +309,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }
-                swipedrawer[0].removeAllSlides();
-                swipedrawer[0].appendSlide(addSlides);
+                swipedrawer[1].removeAllSlides();
+                swipedrawer[1].appendSlide(addSlides);
             }
 
             ///Load Playlist Slides
@@ -268,8 +327,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }); 
-                swipedrawer[1].removeAllSlides();
-                swipedrawer[1].appendSlide(addSlides);
+                swipedrawer[2].removeAllSlides();
+                swipedrawer[2].appendSlide(addSlides);
             }else{
                 var addSlides = '';
                 for (var i = 0; i <= 4; i++) {
@@ -283,8 +342,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }
-                swipedrawer[1].removeAllSlides();
-                swipedrawer[1].appendSlide(addSlides);
+                swipedrawer[2].removeAllSlides();
+                swipedrawer[2].appendSlide(addSlides);
             }
 
             ///Load Books Slides
@@ -301,8 +360,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }); 
-                swipedrawer[2].removeAllSlides();
-                swipedrawer[2].appendSlide(addSlides);
+                swipedrawer[3].removeAllSlides();
+                swipedrawer[3].appendSlide(addSlides);
             }else{
                 var addSlides = '';
                 for (var i = 0; i <= 4; i++) {
@@ -316,8 +375,8 @@
                     addSlides += '</div>';
                     addSlides += '</a>';
                 }
-                swipedrawer[2].removeAllSlides();
-                swipedrawer[2].appendSlide(addSlides);
+                swipedrawer[3].removeAllSlides();
+                swipedrawer[3].appendSlide(addSlides);
             }
 
             clearInterval(intervalLoadData);

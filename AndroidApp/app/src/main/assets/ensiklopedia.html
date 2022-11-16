@@ -42,14 +42,9 @@
     <div class="container explore-parent">
         <div class="content explore-content">
             <div class="explore-title">
-                <h1>Ensiklopedia</h1>
-            </div>
-            <div class="explore-subtitle">
-                <h2>Informasi ringkas kesehatan mental.</h2>
+                <h1 class="ensiklopediaJudul">Ensiklopedia</h1>
             </div>
         </div>
-    </div><br>
-    <div class="container explore-parent">
         <div class="content explore-content listEnsiklopedia">
             
         </div>
@@ -72,17 +67,15 @@
             $('.userDataAvatar').attr('src',userData.avatar);
 
             ///Load Ensiklopedia
-            if (is_exists(userData.ensiklopedia) == true){
-                var addHtml = '';
-                $.each(userData.ensiklopedia, function( index, value ) {
-                    addHtml += '<div class="explore-title">';
-                    addHtml += '<h2>'+value.judul+'</h2>';
-                    addHtml += '</div>';
-                    addHtml += '<div class="explore-subcontent">';
-                    addHtml += value.konten;
+            if (is_exists($_GET['post_id']) == true){
+                if (is_exists(userData.ensiklopedia) == true){
+                    var addHtml = ''; 
+                    addHtml += '<div class="explore-subcontent explore-subcontent-block">';
+                    addHtml += userData.ensiklopedia[$_GET['post_id']].konten;
                     addHtml += '</div><br>';
-                }); 
-                $(".listEnsiklopedia").append(addHtml);
+                    $(".listEnsiklopedia").append(addHtml);
+                    $(".ensiklopediaJudul").html(userData.ensiklopedia[$_GET['post_id']].judul);
+                }
             }
             
             clearInterval(intervalLoadData);

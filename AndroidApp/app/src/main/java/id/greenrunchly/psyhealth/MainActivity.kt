@@ -116,8 +116,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun createNotificationChannel() {
-        val name = "Notif Channel"
-        val desc = "Deskripsi Notif"
+        val name = "Motivasi Harian"
+        val desc = "Menampilkan notifikasi motivasi untuk mu 2 kali setiap hari!"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(channelID, name, importance)
         channel.description = desc

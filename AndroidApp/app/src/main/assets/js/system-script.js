@@ -7,7 +7,7 @@ var appSettingsDebugMode = true;
 
 ///Apply Theme Settings
 if (is_exists(loadData('app_settings_theme')) == true){}else{
-    setData('dark-theme','app_settings_theme');
+    setData('light-theme','app_settings_theme');
 }
 
 var appSettingsTheme = loadData('app_settings_theme');

@@ -47,7 +47,7 @@ class Notification : BroadcastReceiver()
 
                             val notification = context?.let {
                                 NotificationCompat.Builder(it, channelID)
-                                    .setSmallIcon(R.drawable.logo)
+                                    .setSmallIcon(R.drawable.logo_round_small)
                                     .setContentTitle(titleExtra)
                                     .setContentText(messageExtra)
                                     .setStyle(
